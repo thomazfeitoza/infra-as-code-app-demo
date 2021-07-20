@@ -1,0 +1,4 @@
+*.tfstate*
+.terraform*
+node_modules
+components/applications/frontend-app/dist
