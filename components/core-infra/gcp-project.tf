@@ -17,6 +17,7 @@ resource "google_project_service" "apis" {
     "compute.googleapis.com",
     "container.googleapis.com",
     "containerregistry.googleapis.com",
+    "logging.googleapis.com",
   ])
   service            = each.key
   disable_on_destroy = false

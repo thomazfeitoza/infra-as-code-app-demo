@@ -1,22 +1,31 @@
 const express = require('express')
 const app = express()
-const logger = require('pino')()
 const os = require('os')
 const cors = require('cors')
+const logger = require('pino')({
+  messageKey: 'message',
+  name: 'backend-app',
+})
 
 const port = +process.env.SERVER_PORT
 
 app.use(cors())
 
-app.use((req, res, next) => {
-  logger.info(`${req.method} ${req.path} - ${req.ip}`)
-  next()
-})
-
 app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'OK'
   })
+})
+
+app.use((req, res, next) => {
+  res.reqStartedAt = Date.now()
+
+  res.on('finish', function () {
+    const latency = Date.now() - res.reqStartedAt
+    logger.info(`${req.method} ${req.path} - ${res.statusCode} ${res.statusMessage} - ${latency}ms`)
+  })
+
+  next()
 })
 
 app.get('/api/me', (req, res) => {
