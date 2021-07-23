@@ -4,38 +4,49 @@
   <title>Infra as Code App Demo</title>
   <link rel="stylesheet" href="main.css" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <script src="jquery-3.6.0.min.js"></script>
+  <script src="vue.js"></script>
 </head>
 
 <body>
-  <h1>Infra as Code App Demo</h1>
-  <div class="container">
+  <div id="app">
+    <h1>Infra as Code App Demo</h1>
+    <div class="container">
 
-    <p>
-      Esta página tem a intenção de simular uma aplicação frontend servida através de um bucket no Google Cloud Storage.
-    </p>
+      <p>
+        Esta página tem a intenção de simular uma aplicação frontend servida através de um bucket no Google Cloud
+        Storage.
+      </p>
 
-    <div class="banner">
-      <h2>Tecnologias usadas neste projeto</h2>
-      <div>
-        <img src="images/docker.png" />
-        <img src="images/gcp.png" />
-        <img src="images/terraform.png" />
+      <p>
+        O conteúdo abaixo foi carregado através da aplicação backend, que responde no caminho "/api/*" deste domínio.
+      </p>
+
+      <h2>GET /api/random-car</h2>
+      <div class="car-banner">
+        <img :src="mainCar.imageUrl" />
       </div>
-    </div>
 
-    <p>
-      O conteúdo abaixo foi carregado através da aplicação backend, que responde no caminho "/api/*" deste domínio.
-      Ao executar esta API em um ambiente com múltiplas réplicas, o hostname é alterado ao recarregar a página.
-      No Kubernetes por exemplo, o hostname mostrado corresponde ao nome do pod que respondeu a solicitação.
-    </p>
+      <h2>GET /api/cars</h2>
+      <div class="car-list">
+        <div v-for="car in cars" class="car-card">
+          <img :src="car.imageUrl" />
+          <span>{{ car.manufacturer }} {{ car.model }}</span>
+        </div>
+      </div>
 
-    <div class="box">
-      <div id="user-data"></div>
-      <div id="host-info"></div>
+      <div class="banner">
+        <h2>Tecnologias usadas neste projeto</h2>
+        <div>
+          <img src="images/docker.png" />
+          <img src="images/gcp.png" />
+          <img src="images/terraform.png" />
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <script src="jquery-3.6.0.min.js"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
 </body>

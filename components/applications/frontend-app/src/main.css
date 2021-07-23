@@ -15,9 +15,8 @@ h1 {
   padding: 10px;
 }
 
-h2 {
-  font-size: 20px;
-  margin: 0 0 20px 0;
+p {
+  margin: 10px 0 20px 0;
 }
 
 .box {
@@ -37,8 +36,43 @@ h2 {
   padding: 20px;
 }
 
-img {
+.banner h2 {
+  font-size: 20px;
+  margin: 0 0 20px 0;
+}
+
+.banner img {
   height: 100px;
   margin: 0 30px;
   padding: 5px;
+}
+
+.car-banner img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.car-list {
+  margin: 0 0 50px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.car-card {
+  display: inline-block;
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+.car-card img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.car-card span {
+  display: block;
+  margin-top: 10px
 }
